@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:padding="10dp"
+    >
+
+    <ImageView
+        android:id="@+id/pic"
+        android:layout_width="75dp"
+        android:layout_height="match_parent"
+         />
+
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:maxLines="1"
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="zero to one jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj"
+            android:textSize="25dp" />
+
+
+
+        <TextView
+            android:id="@+id/auther"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="piter tile" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+
+                android:text="4.5" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/rating"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="1dp"
+                android:layout_toEndOf="@+id/rating"
+                android:layout_toRightOf="@+id/rating"
+                android:src="@drawable/ic_star" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentBottom="true"
+
+             android:layout_toLeftOf="@+id/curuncy"
+                android:text="500"
+                android:textColor="#ff0000" />
+
+            <TextView
+                android:layout_alignParentEnd="true"
+                android:textColor="#ff0000"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/curuncy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EG" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
