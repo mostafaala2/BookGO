@@ -4,12 +4,16 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -104,11 +108,22 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             searchValue = searchValue.replace(" ", "+");
         }
 
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String minSearch = sharedPrefs.getString(
+                getString(R.string.settings_min_search_key),
+                getString(R.string.settings_min_search_default));
+
+
+
+
         StringBuilder sb = new StringBuilder();
-        sb.append("https://www.googleapis.com/books/v1/volumes?q=").append(searchValue).append("&maxResults=5");
+        sb.append("https://www.googleapis.com/books/v1/volumes?q=").append(searchValue).append("&maxResults=").append(minSearch);
+
         mUrlRequestGoogleBooks = sb.toString();
         return mUrlRequestGoogleBooks;
     }
+
+
     public void restartLoader() {
         mEmptyStateTextView.setVisibility(View.GONE);
 
@@ -131,6 +146,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public Loader<List<Book>> onCreateLoader(int id, Bundle args) {
         return new BookLoader(this, mUrlRequestGoogleBooks);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
